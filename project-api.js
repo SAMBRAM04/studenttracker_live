@@ -1,9 +1,19 @@
 import express from 'express';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const publicDir = join(__dirname, 'public');
 
 export function configureApp(app, db) {
   app.use(express.json({ limit: '10kb' }));
 
+  app.use(express.static(publicDir));
   app.use(express.static('public'));
+
+  app.get('/', (req, res) => {
+    res.sendFile(join(publicDir, 'index.html'));
+  });
 
   app.get('/api/health', (req, res) => {
     res.json({ ok: true });
