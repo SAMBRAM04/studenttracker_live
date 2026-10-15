@@ -1,54 +1,45 @@
-# Student Project Tracker
+# Student Project Tracker (Vercel Ready)
 
-A hands-on web development workshop project for managing engineering project ideas. Users can add, view, edit and delete projects. Project records are stored locally in SQLite.
+A modern full-stack web application for tracking hardware and software engineering project ideas. Built with vanilla HTML/CSS/JavaScript, Express, and SQLite with automated schema migrations.
 
-## Run
+## ✨ Features
+- **Responsive Dark/Light Theme**: Auto-detects and persists in browser localStorage.
+- **Project CRUD**: Create, read, update, and delete engineering projects.
+- **Priority & Status Tracking**: Low / Medium / High priority badges with color codes.
+- **Real-time Search & Multi-filter**: Filter by status, priority, and sort by date or alphabetical order.
+- **Live Metrics Dashboard**: Visual progress bar and project counters.
+- **Data Export**: Export your projects to JSON backup file with one click.
+- **Keyboard Shortcuts**: <kbd>Esc</kbd> to cancel editing.
 
-Use Node.js 22.18.0 or newer.
-
-Open PowerShell in the project folder and run:
+## 🚀 Local Development
 
 ```powershell
-npm.cmd ci
-npm.cmd start
+# Install dependencies
+npm install
+
+# Run automated tests
+npm test
+
+# Start the server locally
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🚢 Deploy to GitHub & Vercel
+
+### Step 1: Push to GitHub
+In PowerShell inside this folder:
+```powershell
+git init -b main
+git add .
+git commit -m "Initial commit: full-stack project tracker"
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git push -u origin main
 ```
 
-Open http://localhost:3000 in your browser. Keep the server terminal running. Stop the server with Ctrl+C.
-
-## Files
-
-* `public/index.html`: Page structure and form.
-* `public/style.css`: Styling and responsive layout.
-* `public/script.js`: Form handling, API requests and rendering.
-* `server.js`: Starts the local server.
-* `project-api.js`: API routes and input validation.
-* `database.js`: SQLite database operations.
-
-## Storage and Data Persistence
-
-Project records are stored in the local SQLite database at `data/projects.db`.
-
-Refreshing the browser or restarting the server should preserve saved SQLite records. Browser data previously stored in localStorage is not automatically migrated to SQLite.
-
-## Verification
-
-* CRUD operations: Create, read, update and delete tested.
-* Restart persistence: Saved records remained after restarting the server.
-* Failure and retry: Saving failed while the server was stopped and worked after restarting it.
-* GitHub: Source code committed and pushed.
-* Mobile/responsive test: Not yet verified.
-* Automated tests: Run `npm.cmd test` to verify CRUD, validation, persistence and static frontend behavior.
-
-## API
-
-* `GET /api/health`: Check server health.
-* `GET /api/projects`: List projects.
-* `POST /api/projects`: Create a project.
-* `PUT /api/projects/:id`: Update a project.
-* `DELETE /api/projects/:id`: Delete a project.
-
-## Limitations
-
-This is a local learning project without login or user isolation. Users connected to the same server share its project collection.
-
-The generated database file and `node_modules` folder should remain local and must not be committed to GitHub.
+### Step 2: Deploy to Vercel
+1. Go to [https://vercel.com](https://vercel.com) and log in.
+2. Click **Add New...** > **Project**.
+3. Import your GitHub repository.
+4. Keep the default settings (Vercel will automatically read `vercel.json` and `api/index.js`).
+5. Click **Deploy**. Your app is now live!

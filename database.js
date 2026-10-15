@@ -1,8 +1,15 @@
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join } from 'node:path';
 
-mkdirSync('data', { recursive: true });
-const connection = new DatabaseSync(process.env.DB_FILE || 'data/projects.db');
+const dbPath = process.env.DB_FILE || (process.env.VERCEL ? join(tmpdir(), 'projects.db') : 'data/projects.db');
+
+try {
+  mkdirSync(dirname(dbPath), { recursive: true });
+} catch {}
+
+const connection = new DatabaseSync(dbPath);
 
 connection.exec(`CREATE TABLE IF NOT EXISTS projects (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
